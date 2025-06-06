@@ -38,7 +38,6 @@ projects = {
     "Jay Vardhan - Stone-Paper-Scissor": "https://gaming-7.streamlit.app",
 }
 
-# Store selected project in session state
 if 'selected_project' not in st.session_state:
     st.session_state.selected_project = None
 
@@ -80,12 +79,19 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Display selected project link
+# Show launch button for selected project
 if selected:
+    st.markdown("### 🚀 Selected Project")
+    st.success(f"You've selected: **{selected}**")
+
+    project_url = projects[selected]
+
     st.markdown(f"""
     <div style="text-align: center; margin-top: 20px;">
-        <a href="{projects[selected]}" target="_blank" style="font-size: 20px; color: white; background-color: #4CAF50; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
-            🚀 Launch {selected}
+        <a href="{project_url}" target="_blank">
+            <button style='background-color: #4CAF50; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;'>
+                👉 Launch {selected}
+            </button>
         </a>
     </div>
     """, unsafe_allow_html=True)
