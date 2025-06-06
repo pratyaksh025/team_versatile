@@ -1,7 +1,6 @@
 import streamlit as st
 import base64
 import os
-import webbrowser
 
 # Set page configuration
 st.set_page_config(
@@ -36,7 +35,7 @@ logo_base64 = get_base64_encoded_image("logo.png")
 projects = {
     "Sandeep Balmiki - BMI App": "https://bmi-01.streamlit.app",
     "Pratyaksh Yadav - Resume Extract App": "https://resumeextract-pr.streamlit.app",
-    "Jay Vardhan - Stone-Paper-Scissior": "https://gaming-7.streamlit.app",
+    "Jay Vardhan - Stone-Paper-Scissor": "https://gaming-7.streamlit.app",
 }
 
 # Store selected project in session state
@@ -63,12 +62,6 @@ with st.sidebar:
     
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # If selection changed, update session state and open URL
-    if selected != st.session_state.selected_project:
-        st.session_state.selected_project = selected
-        if selected:
-            webbrowser.open_new_tab(projects[selected])
-
 # Main content section
 st.markdown(f"""
 <div class="main-container">
@@ -86,6 +79,16 @@ st.markdown(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+# Display selected project link
+if selected:
+    st.markdown(f"""
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{projects[selected]}" target="_blank" style="font-size: 20px; color: white; background-color: #4CAF50; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
+            🚀 Launch {selected}
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Features grid
 st.markdown("""
